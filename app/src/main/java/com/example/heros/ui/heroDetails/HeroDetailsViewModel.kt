@@ -1,4 +1,4 @@
-package com.example.heros.ui.heroList.heroDetails
+package com.example.heros.ui.heroDetails
 
 import androidx.lifecycle.ViewModel
 
