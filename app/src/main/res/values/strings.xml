@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Heros</string>
+    <string name="app_name">heroes</string>
+    <string name="search_serial">Search</string>
 </resources>

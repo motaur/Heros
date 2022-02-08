@@ -1,19 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.heroList.HeroListActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <import type="androidx.core.content.ContextCompat" />
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.example.heros.ui.heroList.HeroListViewModel"/>
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/etSearchFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_20dp"
+            android:layout_marginTop="@dimen/margin_40dp"
+            android:background="@drawable/search_bar_component_background"
+            android:clickable="true"
+            android:focusable="false"
+            app:iconifiedByDefault="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:queryHint="@string/search_serial"
+            tools:ignore="KeyboardInaccessibleWidget" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="@dimen/size_75dp"
+            android:layout_height="@dimen/size_75dp"
+            android:layout_marginTop="@dimen/margin_55dp"
+            android:visibility="@{viewModel.progressVisible ? View.VISIBLE : View.GONE }"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etSearchFilter" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/heroes_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:layout_marginBottom="@dimen/margin_10dp"
+            app:adapter="@{viewModel.adapter}"
+            app:layout_constraintTop_toBottomOf="@+id/etSearchFilter"
+            tools:layout_editor_absoluteX="10dp"
+            tools:listitem="@layout/hero_row_item" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

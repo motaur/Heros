@@ -9,9 +9,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Heros">
+        android:theme="@style/Theme.heros">
         <activity
-            android:name=".ui.heroList.HeroListActivity"
+            android:name="com.example.heros.ui.heroList.HeroListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

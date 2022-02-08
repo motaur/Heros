@@ -2,7 +2,9 @@ package com.example.heros.ui.heroList
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.heros.R
+import android.view.inputmethod.EditorInfo
+import android.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.heros.databinding.ActivityHeroListBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -15,6 +17,30 @@ class HeroListActivity : AppCompatActivity() {
         binding = ActivityHeroListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.text.text = "my text"
+        binding.etSearchFilter.imeOptions = EditorInfo.IME_ACTION_DONE
+        binding.etSearchFilter.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    binding.etSearchFilter.clearFocus()
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String): Boolean {
+                    vm.searchText = newText
+                    return true
+                }
+
+            }
+        )
+
+        setupRecyclerView()
+        vm.init()
+    }
+
+    private fun setupRecyclerView() {
+        val recyclerView = binding.heroesList.apply {
+            layoutManager = LinearLayoutManager(this@HeroListActivity ) }
+
+        recyclerView.adapter = vm.adapter
     }
 }

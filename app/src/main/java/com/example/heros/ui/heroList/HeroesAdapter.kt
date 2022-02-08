@@ -1,5 +1,7 @@
 package com.example.heros.ui.heroList
 
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -8,15 +10,19 @@ import com.example.heros.R
 import com.example.heros.databinding.HeroRowItemBinding
 import com.example.heros.models.HeroUiModel
 
-class HeroesAdapter(val onClick: (index: Int) -> Unit) : RecyclerView.Adapter<HeroesAdapter.ItemHolder>() {
+class HeroesAdapter : RecyclerView.Adapter<HeroesAdapter.ItemHolder>() {
 
     private var list: List<HeroUiModel> = emptyList()
 
-    inner class ItemHolder(val binding: HeroRowItemBinding) :
+    class ItemHolder(val binding: HeroRowItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
-            itemView.setOnClickListener {
-                onClick(it.id)
+            binding.setClickListener { view ->
+                binding.heroName?.let { photo ->
+//                    val uri = Uri.parse(photo.user.attributionUrl)
+//                    val intent = Intent(Intent.ACTION_VIEW, uri)
+//                    view.context.startActivity(intent)
+                }
             }
         }
     }
@@ -27,7 +33,6 @@ class HeroesAdapter(val onClick: (index: Int) -> Unit) : RecyclerView.Adapter<He
                 if (it.name.contains(searchText, ignoreCase = true))
                     filteredList.add(it)
             }
-
         }
 
     fun setList(listToUpdate: List<HeroUiModel>, searchText: String? = null) {
@@ -37,7 +42,7 @@ class HeroesAdapter(val onClick: (index: Int) -> Unit) : RecyclerView.Adapter<He
         } else
             this.list = filter(searchText)
 
-        notifyDataSetChanged()
+        notifyDataSetChanged() //TODO change
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder =
@@ -52,9 +57,7 @@ class HeroesAdapter(val onClick: (index: Int) -> Unit) : RecyclerView.Adapter<He
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         list[position].run {
-            holder.binding.let {
-                it.heroName.text = this.name
-            }
+            holder.binding.heroName.text = this.name
         }
     }
 

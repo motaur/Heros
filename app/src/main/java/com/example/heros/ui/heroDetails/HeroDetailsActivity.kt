@@ -3,6 +3,7 @@ package com.example.heros.ui.heroDetails
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.heros.databinding.ActivityHeroDetailsBinding
+
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HeroDetailsActivity : AppCompatActivity() {
