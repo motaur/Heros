@@ -6,7 +6,7 @@ class HeroRepositoryImpl : HeroRepository {
 
     override fun sayHello() = "hello from $this"
 
-    override suspend fun getHeroList() : List<HeroUiModel>{
-        return emptyList() //TODO retrofit
+    override suspend fun getHeroList() : Array<HeroUiModel>{
+        return emptyArray() //TODO retrofit
     }
 }

@@ -4,5 +4,5 @@ import com.example.heros.models.HeroUiModel
 
 interface HeroRepository {
     fun sayHello() : String
-    suspend fun getHeroList() : List<HeroUiModel>
+    suspend fun getHeroList() : Array<HeroUiModel>
 }

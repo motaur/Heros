@@ -1,5 +1,7 @@
 package com.example.heros.ui.heroList
 
+import android.util.Log
+import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,9 +11,11 @@ import kotlinx.coroutines.launch
 
 
 class HeroListViewModel(private val heroRepository: HeroRepository) : ViewModel() {
-    val adapter: HeroesAdapter = HeroesAdapter()
+
     val progressVisible = MutableLiveData(true)
-    var heroesList: List<HeroUiModel> = emptyList()
+    var heroesList: Array<HeroUiModel> = emptyArray()
+    val adapter: HeroesAdapter = HeroesAdapter(heroesList)
+
 
     var searchText: String = ""
         set(value) {
@@ -19,16 +23,16 @@ class HeroListViewModel(private val heroRepository: HeroRepository) : ViewModel(
             adapter.setList(heroesList, value)
         }
 
-    fun init() {
-        viewModelScope.launch {
-            val result = heroRepository.getHeroList()
+    suspend fun init() {
 
+            val result = heroRepository.getHeroList()
+            Log.v("heroes list result", result.toString())
             if(result.isNotEmpty()) {
                 progressVisible.value = false
                 heroesList = result
                 adapter.setList(result)
-            }
-        }
+
+    }
 
     }
 

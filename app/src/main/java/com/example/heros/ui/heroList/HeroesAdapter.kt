@@ -1,7 +1,5 @@
 package com.example.heros.ui.heroList
 
-import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -10,9 +8,7 @@ import com.example.heros.R
 import com.example.heros.databinding.HeroRowItemBinding
 import com.example.heros.models.HeroUiModel
 
-class HeroesAdapter : RecyclerView.Adapter<HeroesAdapter.ItemHolder>() {
-
-    private var list: List<HeroUiModel> = emptyList()
+class HeroesAdapter(private var dataSet: Array<HeroUiModel>) : RecyclerView.Adapter<HeroesAdapter.ItemHolder>() {
 
     class ItemHolder(val binding: HeroRowItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -27,20 +23,20 @@ class HeroesAdapter : RecyclerView.Adapter<HeroesAdapter.ItemHolder>() {
         }
     }
 
-    private fun filter(searchText: String) =
+    private fun filter(searchText: String, listToUpdate: Array<HeroUiModel>): Array<HeroUiModel> =
         arrayListOf<HeroUiModel>().also { filteredList ->
-            list.forEach {
+            listToUpdate.forEach {
                 if (it.name.contains(searchText, ignoreCase = true))
                     filteredList.add(it)
             }
-        }
+        }.toTypedArray()
 
-    fun setList(listToUpdate: List<HeroUiModel>, searchText: String? = null) {
+    fun setList(listToUpdate: Array<HeroUiModel>, searchText: String? = null) {
 
         if (searchText == null || searchText.isEmpty()) {
-            this.list = listToUpdate
+            this.dataSet = listToUpdate
         } else
-            this.list = filter(searchText)
+            this.dataSet = filter(searchText, listToUpdate)
 
         notifyDataSetChanged() //TODO change
     }
@@ -56,10 +52,8 @@ class HeroesAdapter : RecyclerView.Adapter<HeroesAdapter.ItemHolder>() {
         )
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        list[position].run {
-            holder.binding.heroName.text = this.name
-        }
+        holder.binding.heroName.text = dataSet[position].name
     }
 
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount(): Int = dataSet.size
 }
