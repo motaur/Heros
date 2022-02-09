@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="androidx.databinding.ObservableField"/>
         <import type="androidx.core.content.ContextCompat" />
         <import type="android.view.View" />
         <variable
@@ -16,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+
         <androidx.appcompat.widget.SearchView
             android:id="@+id/etSearchFilter"
             android:layout_width="match_parent"
@@ -24,6 +26,7 @@
             android:layout_marginTop="@dimen/margin_40dp"
             android:background="@drawable/search_bar_component_background"
             android:clickable="true"
+
             android:focusable="false"
             app:iconifiedByDefault="false"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +40,7 @@
             android:layout_width="@dimen/size_75dp"
             android:layout_height="@dimen/size_75dp"
             android:layout_marginTop="@dimen/margin_55dp"
-
+            android:visibility="@{viewModel.progressVisibility}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etSearchFilter" />
@@ -46,12 +49,16 @@
             android:id="@+id/heroes_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_20dp"
             android:layout_marginTop="@dimen/margin_10dp"
+            android:adapter="@{viewModel.adapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etSearchFilter"
+            app:layout_constraintVertical_bias="0.029"
             tools:listitem="@layout/hero_row_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

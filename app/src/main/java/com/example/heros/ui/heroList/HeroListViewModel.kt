@@ -1,39 +1,58 @@
 package com.example.heros.ui.heroList
 
 import android.util.Log
-import android.view.View
+import android.view.View.*
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.heros.models.HeroUiModel
-import com.example.heros.repositories.heroRepository.HeroRepository
+import com.example.heros.services.IHeroService
 import kotlinx.coroutines.launch
+import java.lang.Exception
 
+class HeroListViewModel(private val heroService: IHeroService) : ViewModel(),
+    LifecycleObserver {
 
-class HeroListViewModel(private val heroRepository: HeroRepository) : ViewModel() {
+    val progressVisibility = MutableLiveData(GONE)
+    val nothingFoundVisibility = MutableLiveData(GONE)
+    val errorVisibility = MutableLiveData(GONE)
 
-    val progressVisible = MutableLiveData(true)
-    var heroesList: Array<HeroUiModel> = emptyArray()
-    val adapter: HeroesAdapter = HeroesAdapter(heroesList)
-
+    var heroesList: List<HeroUiModel> = emptyList()
+    val adapter: HeroesAdapter = HeroesAdapter()
 
     var searchText: String = ""
         set(value) {
             field = value
-            adapter.setList(heroesList, value)
+
+            viewModelScope.launch {
+                if(value.isNotBlank())
+                    searchHeroByName(value)
+            }
         }
 
-    suspend fun init() {
+    private suspend fun searchHeroByName(query: String) {
+        progressVisibility.value = VISIBLE
+        try {
+            val result = heroService.searchHeroByName(query)
+            Log.v("search heroes", result.toString())
+            heroesList = result
+            progressVisibility.value = GONE
 
-            val result = heroRepository.getHeroList()
-            Log.v("heroes list result", result.toString())
-            if(result.isNotEmpty()) {
-                progressVisible.value = false
-                heroesList = result
+            if(result.isEmpty())
+                nothingFoundVisibility.value = VISIBLE
+            else {
+                nothingFoundVisibility.value = GONE
                 adapter.setList(result)
+            }
+        }
+        catch (e: Exception){
+            errorVisibility.value = VISIBLE
+            progressVisibility.value = GONE
+            nothingFoundVisibility.value = GONE
 
-    }
-
+            Log.e("search heroes", e.toString())
+        }
     }
 
 }

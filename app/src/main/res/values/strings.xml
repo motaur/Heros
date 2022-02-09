@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">heroes</string>
     <string name="search_serial">Search</string>
+    <string name="hero_item_image">picture of hero</string>
 </resources>

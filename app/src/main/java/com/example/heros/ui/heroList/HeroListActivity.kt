@@ -11,32 +11,28 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HeroListActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityHeroListBinding
+    private val binding by lazy { ActivityHeroListBinding.inflate(layoutInflater) }
     val vm: HeroListViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHeroListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.viewModel = vm
+        binding.lifecycleOwner = this
 
-        binding.heroesList.adapter = vm.adapter
         binding.etSearchFilter.imeOptions = EditorInfo.IME_ACTION_DONE
+
         binding.etSearchFilter.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    binding.etSearchFilter.clearFocus()
+                    query?.let {
+                        vm.searchText = query
+                        binding.etSearchFilter.clearFocus()
+                    }
                     return true
                 }
-
-                override fun onQueryTextChange(newText: String): Boolean {
-                    vm.searchText = newText
-                    return true
-                }
+                override fun onQueryTextChange(newText: String) = true
             }
         )
-        lifecycleScope.launch{
-            vm.init()
-        }
     }
-
 }

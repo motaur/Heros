@@ -8,36 +8,39 @@ import com.example.heros.R
 import com.example.heros.databinding.HeroRowItemBinding
 import com.example.heros.models.HeroUiModel
 
-class HeroesAdapter(private var dataSet: Array<HeroUiModel>) : RecyclerView.Adapter<HeroesAdapter.ItemHolder>() {
+class HeroesAdapter() : RecyclerView.Adapter<HeroesAdapter.ItemHolder>() {
+
+    private var dataSet = emptyList<HeroUiModel>()
 
     class ItemHolder(val binding: HeroRowItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener { view ->
-                binding.heroName?.let { photo ->
+                binding.card ?.let { photo ->
 //                    val uri = Uri.parse(photo.user.attributionUrl)
 //                    val intent = Intent(Intent.ACTION_VIEW, uri)
 //                    view.context.startActivity(intent)
                 }
             }
         }
+        fun bind(item: HeroUiModel) {
+            binding.apply {
+                hero = item
+                executePendingBindings()
+            }
+        }
     }
 
-    private fun filter(searchText: String, listToUpdate: Array<HeroUiModel>): Array<HeroUiModel> =
-        arrayListOf<HeroUiModel>().also { filteredList ->
-            listToUpdate.forEach {
-                if (it.name.contains(searchText, ignoreCase = true))
-                    filteredList.add(it)
-            }
-        }.toTypedArray()
+//    private fun filter(searchText: String, listToUpdate: Array<HeroUiModel>): Array<HeroUiModel> =
+//        arrayListOf<HeroUiModel>().also { filteredList ->
+//            listToUpdate.forEach {
+//                if (it.name.contains(searchText, ignoreCase = true))
+//                    filteredList.add(it)
+//            }
+//        }
 
-    fun setList(listToUpdate: Array<HeroUiModel>, searchText: String? = null) {
-
-        if (searchText == null || searchText.isEmpty()) {
+    fun setList(listToUpdate: List<HeroUiModel>) {
             this.dataSet = listToUpdate
-        } else
-            this.dataSet = filter(searchText, listToUpdate)
-
         notifyDataSetChanged() //TODO change
     }
 
@@ -52,7 +55,9 @@ class HeroesAdapter(private var dataSet: Array<HeroUiModel>) : RecyclerView.Adap
         )
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
-        holder.binding.heroName.text = dataSet[position].name
+        dataSet[position].let {
+            holder.bind(it)
+        }
     }
 
     override fun getItemCount(): Int = dataSet.size
