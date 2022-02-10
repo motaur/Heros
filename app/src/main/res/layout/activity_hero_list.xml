@@ -34,15 +34,28 @@
             app:queryHint="@string/search_serial"
             tools:ignore="KeyboardInaccessibleWidget" />
 
-        <ProgressBar
+<!--        <ProgressBar-->
+<!--            android:id="@+id/progress"-->
+<!--            android:layout_width="@dimen/size_75dp"-->
+<!--            android:layout_height="@dimen/size_75dp"-->
+<!--            android:visibility="@{viewModel.progressVisibility}"-->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/heroes_list"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/etSearchFilter" />-->
+
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/progress"
-            android:layout_width="@dimen/size_75dp"
-            android:layout_height="@dimen/size_75dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:lottie_rawRes="@raw/batman_progress"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
             android:visibility="@{viewModel.progressVisibility}"
             app:layout_constraintBottom_toBottomOf="@+id/heroes_list"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etSearchFilter" />
+            app:layout_constraintTop_toBottomOf="@+id/etSearchFilter"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/heroes_list"

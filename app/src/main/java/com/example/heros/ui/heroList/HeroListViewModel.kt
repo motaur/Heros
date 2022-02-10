@@ -14,7 +14,7 @@ import java.lang.Exception
 class HeroListViewModel(private val heroService: IHeroService) : ViewModel(),
     LifecycleObserver {
 
-    val progressVisibility = MutableLiveData(GONE)
+    val progressVisibility = MutableLiveData(INVISIBLE)
     val nothingFoundVisibility = MutableLiveData(GONE)
     val errorVisibility = MutableLiveData(GONE)
 
@@ -38,7 +38,7 @@ class HeroListViewModel(private val heroService: IHeroService) : ViewModel(),
             val result = heroService.searchHeroByName(query)
             Log.v("search heroes", result.toString())
             heroesList = result
-            progressVisibility.value = GONE
+            progressVisibility.value = INVISIBLE
 
             if(result.isEmpty())
                 nothingFoundVisibility.value = VISIBLE
@@ -49,7 +49,7 @@ class HeroListViewModel(private val heroService: IHeroService) : ViewModel(),
         }
         catch (e: Exception){
             errorVisibility.value = VISIBLE
-            progressVisibility.value = GONE
+            progressVisibility.value = INVISIBLE
             nothingFoundVisibility.value = GONE
 
             Log.e("search heroes", e.toString())
