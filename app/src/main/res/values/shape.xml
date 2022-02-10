@@ -4,9 +4,9 @@
     <style name="ShapeAppearance.Hero.Card" parent="ShapeAppearance.MaterialComponents">
         <item name="cornerFamily">rounded</item>
 
-        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeTopLeft">@dimen/card_corner_radius</item>
         <item name="cornerSizeTopRight">@dimen/card_corner_radius</item>
-        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cornerSizeBottomRight">@dimen/card_corner_radius</item>
         <item name="cornerSizeBottomLeft">@dimen/card_corner_radius</item>
     </style>
 
@@ -23,7 +23,7 @@
 <!--        name="ShapeAppearance.Sunflower.FAB"-->
 <!--        parent="ShapeAppearance.MaterialComponents.SmallComponent" />-->
 
-    <dimen name="button_corner_radius">12dp</dimen>
-    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="button_corner_radius">5dp</dimen>
+    <dimen name="card_corner_radius">5dp</dimen>
 
 </resources>

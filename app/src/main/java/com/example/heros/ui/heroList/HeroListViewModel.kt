@@ -34,6 +34,7 @@ class HeroListViewModel(private val heroService: IHeroService) : ViewModel(),
     private suspend fun searchHeroByName(query: String) {
         progressVisibility.value = VISIBLE
         try {
+            adapter.setList(emptyList())
             val result = heroService.searchHeroByName(query)
             Log.v("search heroes", result.toString())
             heroesList = result

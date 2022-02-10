@@ -16,6 +16,7 @@ fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
     if (!imageUrl.isNullOrEmpty()) {
         Glide.with(view.context)
             .load(imageUrl)
+            .placeholder(R.drawable.ic_launcher_background)
             .error(R.drawable.ic_launcher_foreground)
 //            .signature(DiskCacheStrategy.RESOURCE) TODO
             .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)

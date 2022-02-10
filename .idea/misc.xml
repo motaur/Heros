@@ -13,7 +13,7 @@
         <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1115" />
         <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/layout/activity_hero_details.xml" value="0.22708333333333333" />
         <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/layout/activity_hero_list.xml" value="0.25" />
-        <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/layout/hero_row_item.xml" value="0.25226449275362317" />
+        <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/layout/hero_row_item.xml" value="0.25" />
       </map>
     </option>
   </component>
@@ -22,5 +22,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.5" />
+      </ProjectState>
+    </option>
   </component>
 </project>

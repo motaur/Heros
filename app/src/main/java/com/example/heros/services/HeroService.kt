@@ -8,7 +8,7 @@ class HeroService(private val heroRepository: IHeroRepository): IHeroService {
     override suspend fun searchHeroByName(query: String) : List<HeroUiModel> {
         return heroRepository.searchHeroByName(query).let { heroesList ->
             heroesList.map {
-                HeroUiModel(it.id, it.name, it.image.url)
+                HeroUiModel(it.id, it.name.trim(), it.image.url)
             }
         }
     }
