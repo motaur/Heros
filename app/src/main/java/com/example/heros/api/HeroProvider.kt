@@ -2,7 +2,7 @@ package com.example.heros.api
 
 import com.example.heros.BuildConfig
 import com.example.heros.models.HeroApiModel
-import com.example.heros.models.HeroesSearchResponse
+import com.example.heros.models.HeroSearchResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
@@ -10,15 +10,13 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
-import retrofit2.http.Query
-import java.lang.annotation.Target
 
-interface HeroesProvider {
+interface HeroProvider {
 
     @GET("search/{query}")
     suspend fun searchByName(
         @Path("query") query: String
-    ): HeroesSearchResponse
+    ): HeroSearchResponse
 
     @GET("{id}")
     suspend fun getById(
@@ -28,7 +26,7 @@ interface HeroesProvider {
     companion object {
         private const val BASE_URL = "https://superheroapi.com/api/${BuildConfig.HEROES_API_KEY}/"
 
-        fun create(): HeroesProvider {
+        fun create(): HeroProvider {
             val logger = HttpLoggingInterceptor().apply { level = Level.BASIC }
 
             val client = OkHttpClient.Builder()
@@ -40,7 +38,7 @@ interface HeroesProvider {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(HeroesProvider::class.java)
+                .create(HeroProvider::class.java)
         }
     }
 }

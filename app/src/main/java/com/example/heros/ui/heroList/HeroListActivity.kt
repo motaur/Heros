@@ -1,20 +1,19 @@
 package com.example.heros.ui.heroList
 
-import android.content.res.ColorStateList
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.widget.SearchView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.example.heros.R
+import com.example.heros.Constants
 import com.example.heros.databinding.ActivityHeroListBinding
 import com.example.heros.models.HeroUiModel
+import com.example.heros.ui.heroDetails.HeroDetailsActivity
 import com.google.android.material.chip.Chip
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.time.Duration
 
 class HeroListActivity : AppCompatActivity() {
     private val binding by lazy { ActivityHeroListBinding.inflate(layoutInflater) }
@@ -41,7 +40,9 @@ class HeroListActivity : AppCompatActivity() {
             }
         )
 
-        vm.helper.observeNetwork(
+        vm.adapter.setNavigationCallback(::navigateToDetails)
+
+        vm.networkHelper.observeNetwork(
             onAvailable = {
                 vm.searchText = vm.searchText
                 initSuggestions()
@@ -51,14 +52,12 @@ class HeroListActivity : AppCompatActivity() {
     }
 
     private fun initSuggestions() {
-        vm.suggestions = emptyList()
         lifecycleScope.launch {
             vm.fetchSuggestions().let {
                 vm.suggestions.forEach { heroUiModel ->
                     val chip = Chip(this@HeroListActivity).apply {
                         text = heroUiModel.name
-                        chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.purple_200))
-
+                        setChipBackgroundColorResource(vm.getSuggestionColor())
                     }
                     chip.setOnClickListener {
                         Toast.makeText(this@HeroListActivity, heroUiModel.id, Toast.LENGTH_SHORT).show()
@@ -68,4 +67,10 @@ class HeroListActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun navigateToDetails(heroUiModel: HeroUiModel) =
+        startActivity(Intent(this, HeroDetailsActivity::class.java).apply {
+            putExtra(Constants.Keys.HERO_MODEL, heroUiModel)
+        })
+
 }

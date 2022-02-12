@@ -1,6 +1,5 @@
 package com.example.heros.adapters
 
-import android.provider.MediaStore.Files.FileColumns.MIME_TYPE
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -17,7 +16,7 @@ fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
         Glide.with(view.context)
             .load(imageUrl)
             .placeholder(R.drawable.ic_launcher_background)
-            .error(R.drawable.ic_launcher_foreground)
+            .error(R.drawable.noob_noob)
 //            .signature(DiskCacheStrategy.RESOURCE) TODO
             .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .transition(DrawableTransitionOptions.withCrossFade())

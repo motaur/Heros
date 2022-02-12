@@ -1,19 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.heroList.HeroListActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <import type="androidx.databinding.ObservableField"/>
+        <import type="androidx.core.content.ContextCompat" />
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.example.heros.ui.heroDetails.HeroDetailsViewModel"/>
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/hero_photo"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:contentDescription="@string/hero_item_image"
+            android:scaleType="center"
+            app:imageFromUrl="@{viewModel.heroUiModel.picture}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0"
+            tools:src="@drawable/noob_noob" />
+
+        <TextView
+            android:translationZ="1dp"
+            android:id="@+id/name_big"
+            tools:text="Noob noob"
+            android:text="@{viewModel.heroUiModel.name}"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/size_30sp"
+            android:layout_marginHorizontal="@dimen/margin_20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/hero_photo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

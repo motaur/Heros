@@ -1,22 +1,34 @@
 package com.example.heros.ui.heroList
 
-import android.graphics.Color
 import android.util.Log
-import android.view.View.*
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.heros.Helper
+import com.example.heros.NetworkHelper
+import com.example.heros.R
 import com.example.heros.models.HeroUiModel
 import com.example.heros.models.RequestState
 import com.example.heros.services.IHeroService
 import kotlinx.coroutines.launch
-import java.lang.Exception
 import kotlin.random.Random
 
-class HeroListViewModel(private val heroService: IHeroService, val helper: Helper) : ViewModel(),
+class HeroListViewModel(private val heroService: IHeroService, val networkHelper: NetworkHelper) : ViewModel(),
     LifecycleObserver {
+
+    private val colors = listOf(
+        R.color.yellow,
+        R.color.red,
+        R.color.orange,
+        R.color.purple_200,
+        R.color.violet,
+        R.color.green,
+        R.color.teal_200
+    )
+
+    fun getSuggestionColor() = colors[Random.nextInt(colors.size)]
 
     val progressVisibility = MutableLiveData(GONE)
     val nothingFoundVisibility = MutableLiveData(GONE)
@@ -26,7 +38,7 @@ class HeroListViewModel(private val heroService: IHeroService, val helper: Helpe
     var suggestions: List<HeroUiModel> = emptyList()
 
     private var heroesList: List<HeroUiModel> = emptyList()
-    val adapter: HeroesAdapter = HeroesAdapter()
+    val adapter: HeroAdapter = HeroAdapter()
 
 
     var searchText: String = ""
@@ -39,6 +51,7 @@ class HeroListViewModel(private val heroService: IHeroService, val helper: Helpe
         }
 
     suspend fun fetchSuggestions() {
+        suggestions = emptyList()
         try {
             suggestions = heroService.getSuggestions()
         }
@@ -104,6 +117,5 @@ class HeroListViewModel(private val heroService: IHeroService, val helper: Helpe
         }
     }
 
-    fun randomColor()  = Color.argb(Random.nextInt(256), Random.nextInt(256), Random.nextInt(256), Random.nextInt(256))
 
 }

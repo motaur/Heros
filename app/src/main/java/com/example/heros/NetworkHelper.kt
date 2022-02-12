@@ -5,7 +5,7 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.util.Log
 
-class Helper(private val context: Context) {
+class NetworkHelper(private val context: Context) {
 
     private val connectivityManager = (context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
 

@@ -43,7 +43,7 @@
                 app:layout_constraintHorizontal_bias="0.017"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_launcher_foreground" />
+                tools:src="@drawable/noob_noob" />
 
             <TextView
                 android:layout_marginHorizontal="@dimen/margin_5dp"
@@ -61,7 +61,7 @@
                 app:layout_constraintHorizontal_bias="0.15"
                 app:layout_constraintStart_toEndOf="@+id/hero_photo"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Cyber super duper big human" />
+                tools:text="Noob noob" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

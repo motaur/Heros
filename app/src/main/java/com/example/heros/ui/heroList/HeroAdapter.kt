@@ -8,21 +8,26 @@ import com.example.heros.R
 import com.example.heros.databinding.HeroRowItemBinding
 import com.example.heros.models.HeroUiModel
 
-class HeroesAdapter() : RecyclerView.Adapter<HeroesAdapter.ItemHolder>() {
+class HeroAdapter() : RecyclerView.Adapter<HeroAdapter.ItemHolder>() {
+
+    private var listItemCallback: (HeroUiModel) -> Unit = {}
 
     private var dataSet = emptyList<HeroUiModel>()
 
-    class ItemHolder(val binding: HeroRowItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class ItemHolder(val binding: HeroRowItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
         init {
-            binding.setClickListener { view ->
-                binding.card.let { photo ->
-//                    val uri = Uri.parse(photo.user.attributionUrl)
-//                    val intent = Intent(Intent.ACTION_VIEW, uri)
-//                    view.context.startActivity(intent)
+            itemView.setOnClickListener {
+                if (layoutPosition != RecyclerView.NO_POSITION) {
+                    listItemCallback(dataSet[layoutPosition])
                 }
             }
+            binding.setClickListener { view ->
+                if (layoutPosition != RecyclerView.NO_POSITION)
+                    listItemCallback(dataSet[layoutPosition])
+            }
         }
+
         fun bind(item: HeroUiModel) {
             binding.apply {
                 hero = item
@@ -30,14 +35,6 @@ class HeroesAdapter() : RecyclerView.Adapter<HeroesAdapter.ItemHolder>() {
             }
         }
     }
-
-//    private fun filter(searchText: String, listToUpdate: Array<HeroUiModel>): Array<HeroUiModel> =
-//        arrayListOf<HeroUiModel>().also { filteredList ->
-//            listToUpdate.forEach {
-//                if (it.name.contains(searchText, ignoreCase = true))
-//                    filteredList.add(it)
-//            }
-//        }
 
     fun setList(listToUpdate: List<HeroUiModel>) {
             this.dataSet = listToUpdate
@@ -61,4 +58,8 @@ class HeroesAdapter() : RecyclerView.Adapter<HeroesAdapter.ItemHolder>() {
     }
 
     override fun getItemCount(): Int = dataSet.size
+
+    fun setNavigationCallback(listItemCallback: (HeroUiModel) -> Unit){
+        this.listItemCallback = listItemCallback
+    }
 }
