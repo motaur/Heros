@@ -21,9 +21,8 @@ class HeroService(private val heroRepository: IHeroRepository): IHeroService {
 
         return coroutineScope {
             suggestionsIds.forEach {
-                suggestions.add(withContext(Dispatchers.Default) {
-                    heroRepository.getById(it)
-                })
+                val result = async { heroRepository.getById(it) }
+                suggestions.add(result.await())
             }
             return@coroutineScope suggestions.map { adaptHeroModel(it) }
         }

@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">heroes</string>
+    <string name="app_name">Heroes</string>
     <string name="search_serial">Search</string>
     <string name="hero_item_image">picture of hero</string>
     <string name="suggestions">Suggestions:</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="check_network">Check your network</string>
 </resources>

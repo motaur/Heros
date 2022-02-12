@@ -13,9 +13,10 @@ import org.koin.dsl.module
 val appModule = module {
 
     single { HeroesProvider.create() }
+    single { Helper(App.instance) }
 
     factory<IHeroRepository> { HeroRepositoryImpl(get()) } //HeroRepositoryMockImpl()
     factory<IHeroService> { HeroService(get()) }
 
-    viewModel { HeroListViewModel(get()) }
+    viewModel { HeroListViewModel(get(), get()) }
 }

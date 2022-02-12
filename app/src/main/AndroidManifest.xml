@@ -15,6 +15,7 @@
         android:theme="@style/Theme.heros">
         <activity
             android:name="com.example.heros.ui.heroList.HeroListActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
