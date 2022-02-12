@@ -1,6 +1,7 @@
 package com.example.heros.api
 
 import com.example.heros.BuildConfig
+import com.example.heros.models.HeroApiModel
 import com.example.heros.models.HeroesSearchResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,14 +13,17 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import java.lang.annotation.Target
 
-/**
- * Used to connect to the Unsplash API to fetch photos
- */
 interface HeroesProvider {
+
     @GET("search/{query}")
     suspend fun searchByName(
-        @Path("query") query: String,
+        @Path("query") query: String
     ): HeroesSearchResponse
+
+    @GET("{id}")
+    suspend fun getById(
+        @Path("id") id: String)
+    : HeroApiModel
 
     companion object {
         private const val BASE_URL = "https://superheroapi.com/api/${BuildConfig.HEROES_API_KEY}/"

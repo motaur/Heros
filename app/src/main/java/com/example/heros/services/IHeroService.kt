@@ -4,4 +4,5 @@ import com.example.heros.models.HeroUiModel
 
 interface IHeroService {
     suspend fun searchHeroByName(query: String): List<HeroUiModel>
+    suspend fun getSuggestions(): List<HeroUiModel>
 }

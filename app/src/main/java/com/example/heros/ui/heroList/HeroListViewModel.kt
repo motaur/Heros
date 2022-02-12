@@ -1,5 +1,6 @@
 package com.example.heros.ui.heroList
 
+import android.graphics.Color
 import android.util.Log
 import android.view.View.*
 import androidx.lifecycle.LifecycleObserver
@@ -10,6 +11,7 @@ import com.example.heros.models.HeroUiModel
 import com.example.heros.services.IHeroService
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import kotlin.random.Random
 
 class HeroListViewModel(private val heroService: IHeroService) : ViewModel(),
     LifecycleObserver {
@@ -18,20 +20,31 @@ class HeroListViewModel(private val heroService: IHeroService) : ViewModel(),
     val nothingFoundVisibility = MutableLiveData(GONE)
     val errorVisibility = MutableLiveData(GONE)
 
-    var heroesList: List<HeroUiModel> = emptyList()
+    var suggestions: List<HeroUiModel> = emptyList()
+
+    private var heroesList: List<HeroUiModel> = emptyList()
     val adapter: HeroesAdapter = HeroesAdapter()
 
     var searchText: String = ""
         set(value) {
             field = value
-
             viewModelScope.launch {
                 if(value.isNotBlank())
                     searchHeroByName(value)
             }
         }
 
+    suspend fun fetchSuggestions() {
+        try {
+            suggestions = heroService.getSuggestions()
+        }
+        catch (e: Exception){
+            Log.e("getSuggestions", e.toString())
+        }
+    }
+
     private suspend fun searchHeroByName(query: String) {
+
         progressVisibility.value = VISIBLE
         try {
             adapter.setList(emptyList())
@@ -55,5 +68,7 @@ class HeroListViewModel(private val heroService: IHeroService) : ViewModel(),
             Log.e("search heroes", e.toString())
         }
     }
+
+    fun randomColor()  = Color.argb(Random.nextInt(256), Random.nextInt(256), Random.nextInt(256), Random.nextInt(256))
 
 }

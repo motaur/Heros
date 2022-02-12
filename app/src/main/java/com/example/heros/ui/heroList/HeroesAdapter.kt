@@ -16,7 +16,7 @@ class HeroesAdapter() : RecyclerView.Adapter<HeroesAdapter.ItemHolder>() {
         RecyclerView.ViewHolder(binding.root) {
         init {
             binding.setClickListener { view ->
-                binding.card ?.let { photo ->
+                binding.card.let { photo ->
 //                    val uri = Uri.parse(photo.user.attributionUrl)
 //                    val intent = Intent(Intent.ACTION_VIEW, uri)
 //                    view.context.startActivity(intent)

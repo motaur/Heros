@@ -17,24 +17,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/design_default_color_background"
-        android:padding="@dimen/margin_20dp">
+        android:padding="@dimen/margin_10dp">
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/etSearchFilter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_20dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/search_bar_component_background"
-
-            app:iconifiedByDefault="false"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:queryHint="@string/search_serial"
-            tools:ignore="KeyboardInaccessibleWidget" />
-
-<!--        <ProgressBar-->
+        <!--        <ProgressBar-->
 <!--            android:id="@+id/progress"-->
 <!--            android:layout_width="@dimen/size_75dp"-->
 <!--            android:layout_height="@dimen/size_75dp"-->
@@ -44,18 +29,33 @@
 <!--            app:layout_constraintStart_toStartOf="parent"-->
 <!--            app:layout_constraintTop_toBottomOf="@+id/etSearchFilter" />-->
 
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/etSearchFilter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_20dp"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:background="@drawable/search_bar_component_background"
+            app:iconifiedByDefault="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/suggestions"
+            app:queryHint="@string/search_serial"
+            tools:ignore="KeyboardInaccessibleWidget" />
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/progress"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:lottie_rawRes="@raw/batman_progress"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             android:visibility="@{viewModel.progressVisibility}"
-            app:layout_constraintBottom_toBottomOf="@+id/heroes_list"
+
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etSearchFilter"/>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/heroes_list"
@@ -72,6 +72,19 @@
             app:layout_constraintTop_toBottomOf="@+id/etSearchFilter"
             app:layout_constraintVertical_bias="0.5"
             tools:listitem="@layout/hero_row_item" />
+
+        <com.google.android.material.chip.ChipGroup
+            app:singleLine="true"
+            android:id="@+id/suggestions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/suggestions"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+
+            app:layout_constraintVertical_bias="0.0"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
