@@ -49,7 +49,7 @@ class HeroListViewModel(private val heroService: IHeroService, val helper: Helpe
 
     private suspend fun searchHeroByName(query: String) {
         setUiFromSearchRequestState(RequestState.Loading)
-//        try {
+        try {
             val result = heroService.searchHeroByName(query)
             Log.v("search heroes", result.toString())
 
@@ -60,11 +60,11 @@ class HeroListViewModel(private val heroService: IHeroService, val helper: Helpe
                 adapter.setList(result)
                 heroesList = result
             }
-//        }
-//        catch (e: Exception){
-//            Log.e("search heroes", e.toString())
-//            setUiFromSearchRequestState(RequestState.Error)
-//        }
+        }
+        catch (e: Exception){
+            Log.e("search heroes", e.toString())
+            setUiFromSearchRequestState(RequestState.Error)
+        }
     }
 
     private fun setUiFromSearchRequestState(requestState: RequestState) {

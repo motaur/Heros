@@ -4,6 +4,7 @@
     <dimen name="margin_40dp">40dp</dimen>
     <dimen name="margin_10dp">10dp</dimen>
     <dimen name="size_75dp">75dp</dimen>
+    <dimen name="size_50sp">50sp</dimen>
     <dimen name="margin_55dp">55dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
     <dimen name="card_side_margin">12dp</dimen>
@@ -11,4 +12,7 @@
     <dimen name="hero_item_image_height">20dp</dimen>
     <dimen name="margin_normal">16dp</dimen>
     <dimen name="margin_5dp">5dp</dimen>
+    <dimen name="size_30sp">30sp</dimen>
+    <dimen name="size_25sp">25sp</dimen>
+    <dimen name="margin_30dp">30dp</dimen>
 </resources>

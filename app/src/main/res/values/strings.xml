@@ -5,4 +5,6 @@
     <string name="suggestions">Suggestions:</string>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="check_network">Check your network</string>
+    <string name="hint">Search for your Superhero</string>
+    <string name="nothing_found">Nothing found for your request</string>
 </resources>
