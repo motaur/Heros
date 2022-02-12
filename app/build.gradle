@@ -42,6 +42,18 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    flavorDimensions "modes"
+    productFlavors {
+        develop {
+            dimension "modes"
+            buildConfigField "Boolean", "Mock", "false"
+        }
+        mocks {
+            dimension "modes"
+            buildConfigField "Boolean", "Mock", "true"
+        }
+    }
 }
 
 dependencies {

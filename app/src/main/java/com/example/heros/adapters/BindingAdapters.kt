@@ -12,7 +12,7 @@ import com.example.heros.R
 @BindingAdapter("imageFromUrl")
 fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
 
-    if (!imageUrl.isNullOrEmpty()) {
+    if(imageUrl != null)
         Glide.with(view.context)
             .load(imageUrl)
             .placeholder(R.drawable.ic_launcher_background)
@@ -21,5 +21,5 @@ fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
             .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(view)
-    }
+
 }
