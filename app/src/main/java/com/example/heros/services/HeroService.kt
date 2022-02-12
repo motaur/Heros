@@ -4,7 +4,8 @@ import com.example.heros.Constants
 import com.example.heros.models.HeroApiModel
 import com.example.heros.models.HeroUiModel
 import com.example.heros.repositories.heroRepository.IHeroRepository
-import kotlinx.coroutines.*
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 
 class HeroService(private val heroRepository: IHeroRepository): IHeroService {
 
@@ -29,6 +30,14 @@ class HeroService(private val heroRepository: IHeroRepository): IHeroService {
     }
 
     private fun adaptHeroModel(heroApiModel: HeroApiModel) : HeroUiModel {
-        return HeroUiModel(heroApiModel.id, heroApiModel.name.trim(), heroApiModel.image.url)
+        return HeroUiModel(
+            heroApiModel.id,
+            heroApiModel.name.trim(),
+            heroApiModel.image.url,
+            heroApiModel.biography,
+            heroApiModel.appearance,
+            heroApiModel.work,
+            heroApiModel.connections
+        )
     }
 }

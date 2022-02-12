@@ -33,16 +33,33 @@
             tools:src="@drawable/noob_noob" />
 
         <TextView
-            android:translationZ="1dp"
+            android:paddingHorizontal="@dimen/padding_5dp"
+            android:background="@color/grey_trans"
             android:id="@+id/name_big"
-            tools:text="Noob noob"
-            android:text="@{viewModel.heroUiModel.name}"
-            android:textColor="@color/grey"
-            android:textSize="@dimen/size_30sp"
-            android:layout_marginHorizontal="@dimen/margin_20dp"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/hero_photo" />
+            android:layout_marginEnd="188dp"
+            android:maxLines="2"
+            android:text="@{viewModel.heroUiModel.name}"
+            android:textColor="@color/white"
+            android:textSize="@dimen/size_30sp"
+            android:translationZ="1dp"
+            app:layout_constraintBottom_toBottomOf="@+id/hero_photo"
+            app:layout_constraintEnd_toStartOf="@+id/share"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Noob noob" />
+
+        <ImageButton
+            android:contentDescription="@string/share_button"
+            android:id="@+id/share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_share"
+            app:layout_constraintBottom_toBottomOf="@+id/hero_photo"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -24,7 +24,7 @@ class HeroRepositoryMockImpl : IHeroRepository {
 
        return HeroApiModel(
             mockId, "Hero $mockId", ImageApiModel(""),
-            Biography("Noob noob $mockId", "Adult Swim", "Unknown" ),
+            Biography("Noob noob $mockId", "Adult Swim", "Unknown", "None"),
             Appearance("black", "male", "bold", arrayOf("30 kg")),
             Work("Janitor ", "Vindicators Space Base"),
             Connections("Vindicators", "Vindicators")
