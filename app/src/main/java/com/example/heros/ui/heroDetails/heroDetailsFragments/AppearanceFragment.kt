@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.heros.databinding.FragmentAppearanceBinding
 import com.example.heros.models.Appearance
 
-class AppearanceFragment(val appearance: Appearance) : Fragment() {
+class AppearanceFragment(private val appearance: Appearance) : Fragment() {
 
     private val binding: FragmentAppearanceBinding by lazy { FragmentAppearanceBinding.inflate(layoutInflater) }
     override fun onCreateView(
@@ -27,6 +27,11 @@ class AppearanceFragment(val appearance: Appearance) : Fragment() {
 
     private fun initAppearance(){
         binding.gender.text = appearance.gender
-        binding.weight.text = appearance.weight[1]  ?: "-"
+        try {
+            binding.weight.text = appearance.weight[0]
+        }
+        catch (e: IndexOutOfBoundsException){
+            binding.weight.text = "-"
+        }
     }
 }

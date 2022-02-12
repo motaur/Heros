@@ -42,9 +42,7 @@ class HeroDetailsActivity : FragmentActivity() {
         val pagerAdapter = ScreenSlidePagerAdapter(this)
         viewPager.adapter = pagerAdapter
 
-        TabLayoutMediator(binding.tabs, viewPager) { tab, position ->
-//            tab.icon = AppCompatResources.getDrawable(this, R.drawable.ic_share)
-        }.attach()
+        TabLayoutMediator(binding.tabs, viewPager) { _, _ -> }.attach()
 
         binding.share.setOnClickListener {
             shareHeroDetails()
@@ -86,6 +84,10 @@ class HeroDetailsActivity : FragmentActivity() {
             putExtra(Intent.EXTRA_TITLE, getString(R.string.share_hero))
             putExtra(Intent.EXTRA_TEXT, getString(R.string.my_hero) + ": "+ vm.heroUiModel.name)
             putExtra(Intent.EXTRA_STREAM, uri)
+
+            // not working properly for all applications, for Facebook and Instagram shares only picture
+            // in Gmail share Picture and text
+            // some apps event don't do anything
             setDataAndType(uri, "*/*")
             flags = FLAG_GRANT_READ_URI_PERMISSION
         }
