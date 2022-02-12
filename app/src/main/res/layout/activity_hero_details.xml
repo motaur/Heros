@@ -33,21 +33,32 @@
             tools:src="@drawable/noob_noob" />
 
         <TextView
-            android:paddingHorizontal="@dimen/padding_5dp"
-            android:background="@color/grey_trans"
             android:id="@+id/name_big"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="188dp"
+            android:background="@color/grey_trans"
             android:maxLines="2"
+            android:paddingHorizontal="@dimen/padding_5dp"
             android:text="@{viewModel.heroUiModel.name}"
             android:textColor="@color/white"
             android:textSize="@dimen/size_30sp"
-            android:translationZ="1dp"
             app:layout_constraintBottom_toBottomOf="@+id/hero_photo"
             app:layout_constraintEnd_toStartOf="@+id/share"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Noob noob" />
+
+        <TextView
+            android:id="@+id/publisher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="DC World"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textAlignment="center"
+            android:layout_marginVertical="@dimen/margin_10dp"
+            android:text="@{viewModel.heroUiModel.biography.publisher}"
+            app:layout_constraintBottom_toTopOf="@+id/pager"
+            app:layout_constraintTop_toBottomOf="@+id/hero_photo"/>
 
         <ImageButton
             android:contentDescription="@string/share_button"
@@ -59,6 +70,27 @@
             app:layout_constraintEnd_toEndOf="parent"
             />
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:layout_marginHorizontal="@dimen/margin_20dp"
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginVertical="@dimen/margin_10dp"
+            app:layout_constraintBottom_toTopOf="@+id/tabs"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/publisher" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs"
+            app:tabIndicatorHeight="0dp"
+            app:tabGravity="center"
+            app:tabBackground="@drawable/dot_selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,4 +10,11 @@
     <string name="share_button">share button</string>
     <string name="my_hero">My superhero</string>
     <string name="alter_egos">"Alter Egos: "</string>
+    <string name="share_hero">Share your hero</string>
+    <string name="occupation">Occupation:</string>
+    <string name="base">Base:</string>
+    <string name="group">Group Affilations:</string>
+    <string name="relatives">Relatives</string>
+    <string name="gender">Gender:</string>
+    <string name="weight">Weight:</string>
 </resources>

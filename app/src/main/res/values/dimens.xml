@@ -17,4 +17,8 @@
     <dimen name="margin_30dp">30dp</dimen>
     <dimen name="margin_60dp">60dp</dimen>
     <dimen name="padding_5dp">5dp</dimen>
+    <dimen name="padding_30dp">30dp</dimen>
+    <dimen name="padding_50dp">50dp</dimen>
+    <dimen name="details_card_elevation">4dp</dimen>
+    <dimen name="border_width_1dp">1dp</dimen>
 </resources>

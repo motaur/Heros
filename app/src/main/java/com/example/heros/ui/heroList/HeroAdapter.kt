@@ -1,5 +1,6 @@
 package com.example.heros.ui.heroList
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -15,14 +16,8 @@ class HeroAdapter() : RecyclerView.Adapter<HeroAdapter.ItemHolder>() {
     private var dataSet = emptyList<HeroUiModel>()
 
     inner class ItemHolder(val binding: HeroRowItemBinding) : RecyclerView.ViewHolder(binding.root) {
-
         init {
-            itemView.setOnClickListener {
-                if (layoutPosition != RecyclerView.NO_POSITION) {
-                    listItemCallback(dataSet[layoutPosition])
-                }
-            }
-            binding.setClickListener { view ->
+            binding.setClickListener {
                 if (layoutPosition != RecyclerView.NO_POSITION)
                     listItemCallback(dataSet[layoutPosition])
             }
@@ -36,9 +31,10 @@ class HeroAdapter() : RecyclerView.Adapter<HeroAdapter.ItemHolder>() {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setList(listToUpdate: List<HeroUiModel>) {
-            this.dataSet = listToUpdate
-        notifyDataSetChanged() //TODO change
+        this.dataSet = listToUpdate
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder =

@@ -10,11 +10,19 @@
         <entry key="..\:/Users/lev_t/AndroidStudioProjects/Heros/app/src/main/res/layout/hero_row_item.xml" value="0.1" />
         <entry key="..\:/Users/lev_t/AndroidStudioProjects/Heros/app/src/main/res/layout/hero_row_item_list.xml" value="0.25" />
         <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1115" />
+        <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/drawable/dot_selector.xml" value="0.1685" />
         <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/drawable/ic_error.xml" value="0.21" />
         <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1115" />
+        <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/drawable/selected_dot.xml" value="0.1685" />
+        <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/drawable/unselected_dot.xml" value="0.1685" />
         <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/layout/activity_hero_details.xml" value="0.22" />
         <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/layout/activity_hero_list.xml" value="0.16296296296296298" />
+        <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/layout/dot_selector.xml" value="0.2546875" />
         <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/layout/error_layout.xml" value="0.32864583333333336" />
+        <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/layout/fragment_appearance.xml" value="0.22" />
+        <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/layout/fragment_connections_details_card.xml" value="0.2557291666666667" />
+        <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/layout/fragment_work.xml" value="0.33" />
+        <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/layout/fragment_work_details_card.xml" value="0.2557291666666667" />
         <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/layout/hero_row_item.xml" value="0.1732283464566929" />
         <entry key="..\:/Users/lev_t/StudioProjects/Heros/app/src/main/res/layout/hiny_layout.xml" value="0.32864583333333336" />
       </map>
