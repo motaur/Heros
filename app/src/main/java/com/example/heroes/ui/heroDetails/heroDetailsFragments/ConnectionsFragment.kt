@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.heroes.databinding.FragmentConnectionsBinding
 import com.example.heroes.models.Connections
 
-class ConnectionsFragment(val connections: Connections) : Fragment() {
+class ConnectionsFragment(private val connections: Connections) : Fragment() {
 
     private val binding: FragmentConnectionsBinding by lazy { FragmentConnectionsBinding.inflate(layoutInflater) }
     override fun onCreateView(
