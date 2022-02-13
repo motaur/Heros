@@ -1,9 +1,8 @@
 package com.example.heros.services
 
-import com.example.heros.Constants
 import com.example.heros.models.HeroApiModel
 import com.example.heros.models.HeroUiModel
-import com.example.heros.repositories.heroRepository.IHeroRepository
+import com.example.heros.repositories.IHeroRepository
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope
 
@@ -15,15 +14,16 @@ class HeroService(private val heroRepository: IHeroRepository): IHeroService {
         }
     }
 
-    override suspend fun getSuggestions(): List<HeroUiModel> {
+    override suspend fun getSuggestions(suggestionsIds: List<String>): List<HeroUiModel> {
 
         val suggestions = mutableListOf<HeroApiModel>()
-        val suggestionsIds = listOf(Constants.SUGGESTIONS_ID_1 , Constants.SUGGESTIONS_ID_2, Constants.SUGGESTIONS_ID_3)
 
         return coroutineScope {
             suggestionsIds.forEach {
                 val result = async { heroRepository.getById(it) }
-                suggestions.add(result.await())
+                result.await()?.let {
+                    suggestions.add(it)
+                }
             }
             return@coroutineScope suggestions.map { adaptHeroModel(it) }
         }
@@ -32,7 +32,7 @@ class HeroService(private val heroRepository: IHeroRepository): IHeroService {
     private fun adaptHeroModel(heroApiModel: HeroApiModel) : HeroUiModel {
         return HeroUiModel(
             heroApiModel.id,
-            heroApiModel.name.trim(),
+            heroApiModel.name,
             heroApiModel.image.url,
             heroApiModel.biography,
             heroApiModel.appearance,

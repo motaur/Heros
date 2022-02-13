@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.os.Environment
 import androidx.core.content.FileProvider
+import androidx.core.view.drawToBitmap
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -18,7 +19,6 @@ import com.example.heros.ui.heroDetails.heroDetailsFragments.AppearanceFragment
 import com.example.heros.ui.heroDetails.heroDetailsFragments.ConnectionsFragment
 import com.example.heros.ui.heroDetails.heroDetailsFragments.WorkFragment
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.coroutines.runBlocking
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 import java.io.FileOutputStream
@@ -52,7 +52,7 @@ class HeroDetailsActivity : FragmentActivity() {
         }
     }
 
-    enum class HeroCard {
+    private enum class HeroCard {
         Appearance ,
         Work,
         Connections
@@ -74,7 +74,7 @@ class HeroDetailsActivity : FragmentActivity() {
     private fun shareHeroDetails() {
         val file = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "picToShare.jpeg")
         val stream = FileOutputStream(file)
-        val bitMap = runBlocking { vm.getBitmap() }
+        val bitMap = binding.heroPhoto.drawToBitmap()
         bitMap.compress(Bitmap.CompressFormat.JPEG, 90, stream)
         stream.close()
         val uri = FileProvider.getUriForFile(
@@ -89,10 +89,10 @@ class HeroDetailsActivity : FragmentActivity() {
             putExtra(Intent.EXTRA_STREAM, uri)
 
             // TODO
-            // in Gmail share Picture and text well,
-            // but not working properly for all applications, for Facebook and Instagram shares only picture            //
-            // some apps event don't do anything
-            setDataAndType(uri, "*/*")
+            // in Gmail/Keep share Picture and text well, maybe need to add subject/title;
+            // Not working properly for all applications, for Facebook and Instagram shares only picture
+            // some apps don't do anything
+            setDataAndType(uri, "image/*" + "text/*")
             flags = FLAG_GRANT_READ_URI_PERMISSION
         }
         val shareIntent = Intent.createChooser(sendIntent, getString(R.string.my_hero))

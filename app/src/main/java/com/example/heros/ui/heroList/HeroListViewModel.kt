@@ -3,20 +3,19 @@ package com.example.heros.ui.heroList
 import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.heros.NetworkHelper
+import com.example.heros.Constants
 import com.example.heros.R
+import com.example.heros.helpers.NetworkHelper
 import com.example.heros.models.HeroUiModel
 import com.example.heros.models.RequestState
 import com.example.heros.services.IHeroService
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-class HeroListViewModel(private val heroService: IHeroService, val networkHelper: NetworkHelper) : ViewModel(),
-    LifecycleObserver {
+class HeroListViewModel(private val heroService: IHeroService, val networkHelper: NetworkHelper) : ViewModel() {
 
     private val colors = listOf(
         R.color.yellow,
@@ -27,6 +26,8 @@ class HeroListViewModel(private val heroService: IHeroService, val networkHelper
         R.color.green,
         R.color.teal_200
     )
+
+    private val suggestionsIds = listOf(Constants.SUGGESTIONS_ID_1 , Constants.SUGGESTIONS_ID_2, Constants.SUGGESTIONS_ID_3)
 
     fun getSuggestionColor() = colors[Random.nextInt(colors.size)]
 
@@ -52,7 +53,7 @@ class HeroListViewModel(private val heroService: IHeroService, val networkHelper
     suspend fun fetchSuggestions() {
         suggestions = emptyList()
         try {
-            suggestions = heroService.getSuggestions()
+            suggestions = heroService.getSuggestions(suggestionsIds)
         }
         catch (e: Exception){
             Log.e("getSuggestions", e.toString())

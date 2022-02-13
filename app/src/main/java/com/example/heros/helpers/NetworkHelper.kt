@@ -1,4 +1,4 @@
-package com.example.heros
+package com.example.heros.helpers
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -20,5 +20,9 @@ class NetworkHelper(private val context: Context) {
                 onLost.invoke()
             }
         })
+    }
+
+    fun isNetworkAvailable() : Boolean {
+        return connectivityManager.activeNetwork != null
     }
 }

@@ -10,19 +10,6 @@
         <item name="cornerSizeBottomLeft">@dimen/card_corner_radius</item>
     </style>
 
-<!--    <style name="ShapeAppearance.Hero.Button.Add" parent="ShapeAppearance.MaterialComponents">-->
-<!--        <item name="cornerFamily">rounded</item>-->
-
-<!--        <item name="cornerSizeTopLeft">0dp</item>-->
-<!--        <item name="cornerSizeTopRight">@dimen/button_corner_radius</item>-->
-<!--        <item name="cornerSizeBottomRight">0dp</item>-->
-<!--        <item name="cornerSizeBottomLeft">@dimen/button_corner_radius</item>-->
-<!--    </style>-->
-
-<!--    <style-->
-<!--        name="ShapeAppearance.Sunflower.FAB"-->
-<!--        parent="ShapeAppearance.MaterialComponents.SmallComponent" />-->
-
     <dimen name="button_corner_radius">5dp</dimen>
     <dimen name="card_corner_radius">5dp</dimen>
 

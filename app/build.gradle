@@ -54,6 +54,20 @@ android {
             buildConfigField "Boolean", "Mock", "true"
         }
     }
+
+    testOptions {
+        packagingOptions {
+            jniLibs {
+                useLegacyPackaging true
+            }
+        }
+    }
+}
+
+configurations {
+    androidTestImplementation {
+        exclude group: 'io.mockk', module: 'mockk-agent-jvm'
+    }
 }
 
 dependencies {
@@ -81,6 +95,12 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
 
     implementation "com.github.bumptech.glide:glide:4.10.0"
+
+    androidTestImplementation "io.mockk:mockk-android:1.12.2"
+    androidTestImplementation "io.mockk:mockk-agent-jvm:1.12.2"
+
+//    testImplementation "io.mockk:mockk:1.12.2"
+//    testImplementation "io.mockk:mockk-agent-jvm:1.12.2"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

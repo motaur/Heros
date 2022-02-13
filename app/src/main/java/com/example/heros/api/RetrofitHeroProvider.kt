@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface HeroProvider {
+interface RetrofitHeroProvider {
 
     @GET("search/{query}")
     suspend fun searchByName(
@@ -21,12 +21,12 @@ interface HeroProvider {
     @GET("{id}")
     suspend fun getById(
         @Path("id") id: String)
-    : HeroApiModel
+    : HeroApiModel?
 
     companion object {
         private const val BASE_URL = "https://superheroapi.com/api/${BuildConfig.HEROES_API_KEY}/"
 
-        fun create(): HeroProvider {
+        fun create(): RetrofitHeroProvider {
             val logger = HttpLoggingInterceptor().apply { level = Level.BASIC }
 
             val client = OkHttpClient.Builder()
@@ -38,7 +38,7 @@ interface HeroProvider {
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
-                .create(HeroProvider::class.java)
+                .create(RetrofitHeroProvider::class.java)
         }
     }
 }

@@ -1,9 +1,10 @@
 package com.example.heros
 
-import com.example.heros.api.HeroProvider
-import com.example.heros.repositories.heroRepository.HeroRepositoryImpl
-import com.example.heros.repositories.heroRepository.HeroRepositoryMockImpl
-import com.example.heros.repositories.heroRepository.IHeroRepository
+import com.example.heros.api.RetrofitHeroProvider
+import com.example.heros.helpers.NetworkHelper
+import com.example.heros.repositories.HeroRepositoryImpl
+import com.example.heros.repositories.HeroRepositoryMockImpl
+import com.example.heros.repositories.IHeroRepository
 import com.example.heros.services.HeroService
 import com.example.heros.services.IHeroService
 import com.example.heros.ui.heroDetails.HeroDetailsViewModel
@@ -13,7 +14,7 @@ import org.koin.dsl.module
 
 val appModule = module {
 
-    single { HeroProvider.create() }
+    single { RetrofitHeroProvider.create() }
     single { NetworkHelper(App.instance) }
 
     factory<IHeroRepository> {
