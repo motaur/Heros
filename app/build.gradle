@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         buildConfigField("String", "HEROES_API_KEY", apikeyProperties['HEROES_API_KEY'])
-        applicationId "com.example.heros"
+        applicationId "com.example.heroes"
         minSdk 28
         targetSdk 31
         versionCode 1

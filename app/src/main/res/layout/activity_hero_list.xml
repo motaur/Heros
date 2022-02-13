@@ -10,7 +10,7 @@
         <import type="android.view.View" />
         <variable
             name="viewModel"
-            type="com.example.heros.ui.heroList.HeroListViewModel"/>
+            type="com.example.heroes.ui.heroList.HeroListViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

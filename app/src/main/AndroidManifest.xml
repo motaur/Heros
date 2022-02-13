@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.heros">
+    package="com.example.heroes">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,7 +16,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.heros">
+        android:theme="@style/Theme.heroes">
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -29,7 +29,7 @@
         </provider>
 
         <activity
-            android:name="com.example.heros.ui.heroList.HeroListActivity"
+            android:name="com.example.heroes.ui.heroList.HeroListActivity"
             android:windowSoftInputMode="adjustPan"
             android:exported="true">
             <intent-filter>
@@ -39,7 +39,7 @@
         </activity>
 
         <activity
-            android:name="com.example.heros.ui.heroDetails.HeroDetailsActivity"
+            android:name="com.example.heroes.ui.heroDetails.HeroDetailsActivity"
             android:exported="true">
         </activity>
     </application>

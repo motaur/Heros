@@ -5,12 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="androidx.databinding.ObservableField"/>
-        <import type="androidx.core.content.ContextCompat" />
         <import type="android.view.View" />
         <variable
             name="viewModel"
-            type="com.example.heros.ui.heroDetails.HeroDetailsViewModel"/>
+            type="com.example.heroes.ui.heroDetails.HeroDetailsViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -75,7 +73,7 @@
             android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginVertical="@dimen/margin_10dp"
+            android:padding="@dimen/margin_10dp"
             app:layout_constraintBottom_toTopOf="@+id/tabs"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

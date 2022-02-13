@@ -7,7 +7,7 @@ The application uses https://superheroapi.com
 ## Installation
 Clone this repository and import into **Android Studio**
 ```bash
-git clone git@github.com:motaur/Heros.git
+git clone git@github.com:motaur/heroes.git
 ```
 
 ## Configuration

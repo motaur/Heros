@@ -10,7 +10,7 @@
             type="android.view.View.OnClickListener"/>
         <variable
             name="hero"
-            type="com.example.heros.models.HeroUiModel"/>
+            type="com.example.heroes.models.HeroUiModel"/>
     </data>
 
     <com.google.android.material.card.MaterialCardView
