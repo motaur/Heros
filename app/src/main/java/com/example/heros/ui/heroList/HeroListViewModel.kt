@@ -40,7 +40,6 @@ class HeroListViewModel(private val heroService: IHeroService, val networkHelper
     private var heroesList: List<HeroUiModel> = emptyList()
     val adapter: HeroAdapter = HeroAdapter()
 
-
     var searchText: String = ""
         set(value) {
             field = value
@@ -116,6 +115,4 @@ class HeroListViewModel(private val heroService: IHeroService, val networkHelper
             }
         }
     }
-
-
 }

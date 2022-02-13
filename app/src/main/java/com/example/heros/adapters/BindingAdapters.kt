@@ -8,6 +8,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.heros.R
 import java.util.*
 
+//TODO investigate signatures deeper
 //https://bumptech.github.io/glide/doc/caching.html
 //https://tech.fleka.me/how-to-have-an-expired-cache-for-glide-image-library-e69d9b54ef40
 @BindingAdapter("imageFromUrl")
@@ -18,7 +19,7 @@ fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
             .load(imageUrl)
             .placeholder(R.drawable.ic_launcher_background)
             .error(R.drawable.noob_noob)
-            .signature(OneDayExpirationSignature(Date().time.toInt())) //TODO investigate signatures deeper
+            .signature(OneDayExpirationSignature(Date().time.toInt()))
             .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(view)

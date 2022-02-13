@@ -23,8 +23,11 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 import java.io.FileOutputStream
 
-
 class HeroDetailsActivity : FragmentActivity() {
+
+    //TODO fix cut card of view pager
+    //https://stackoverflow.com/questions/40377782/android-xml-drop-shadow-cut-off
+
     private val binding by lazy { ActivityHeroDetailsBinding.inflate(layoutInflater) }
     val vm: HeroDetailsViewModel by viewModel()
     private lateinit var viewPager: ViewPager2
@@ -85,8 +88,9 @@ class HeroDetailsActivity : FragmentActivity() {
             putExtra(Intent.EXTRA_TEXT, getString(R.string.my_hero) + ": "+ vm.heroUiModel.name)
             putExtra(Intent.EXTRA_STREAM, uri)
 
-            // not working properly for all applications, for Facebook and Instagram shares only picture
-            // in Gmail share Picture and text
+            // TODO
+            // in Gmail share Picture and text well,
+            // but not working properly for all applications, for Facebook and Instagram shares only picture            //
             // some apps event don't do anything
             setDataAndType(uri, "*/*")
             flags = FLAG_GRANT_READ_URI_PERMISSION

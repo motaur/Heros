@@ -43,7 +43,7 @@ class HeroListActivity : AppCompatActivity() {
 
         vm.networkHelper.observeNetwork(
             onAvailable = {
-                vm.searchText = vm.searchText
+                vm.searchText = vm.searchText // initiate same search request
                 initSuggestions()
             },
             onLost = {}
@@ -54,14 +54,14 @@ class HeroListActivity : AppCompatActivity() {
         lifecycleScope.launch {
             vm.fetchSuggestions().let {
                 vm.suggestions.forEach { heroUiModel ->
-                    val chip = Chip(this@HeroListActivity).apply {
+                    Chip(this@HeroListActivity).apply {
                         text = heroUiModel.name
                         setChipBackgroundColorResource(vm.getSuggestionColor())
+                        setOnClickListener {
+                            navigateToDetails(heroUiModel)
+                        }
+                        binding.suggestions.addView(this)
                     }
-                    chip.setOnClickListener {
-                        navigateToDetails(heroUiModel)
-                    }
-                    binding.suggestions.addView(chip)
                 }
             }
         }
