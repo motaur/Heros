@@ -5,7 +5,7 @@ import java.nio.ByteBuffer
 import java.security.MessageDigest
 import java.util.*
 
-class MySignature(private var currentVersion: Int) : Key {
+class OneDayExpirationSignature(private var currentVersion: Int) : Key {
 
     companion object {
         var versionNumber: Int = Calendar.getInstance().get(Calendar.DAY_OF_YEAR) * 100 +
@@ -13,7 +13,7 @@ class MySignature(private var currentVersion: Int) : Key {
     }
 
     override fun equals(other: Any?): Boolean {
-        if (other is MySignature)
+        if (other is OneDayExpirationSignature)
             return other == currentVersion
         return false
     }

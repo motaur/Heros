@@ -16,20 +16,19 @@ class HeroDetailsViewModel() : ViewModel() {
 
     lateinit var heroUiModel: HeroUiModel
 
+    //TODO create helper class
     suspend fun getBitmap() : Bitmap =
          withContext(Dispatchers.IO) {
-             try {
-                 Glide.with(App.instance)
+            if(heroUiModel.picture.isNotBlank())
+                Glide.with(App.instance)
                      .load(heroUiModel.picture)
                      .placeholder(R.drawable.ic_launcher_background)
                      .error(R.drawable.noob_noob)
                      .submit().get().toBitmap()
-             }
-             catch (e: Exception) {
-                 BitmapFactory.decodeResource(
-                     App.instance.resources,
-                     R.drawable.noob_noob)
-             }
-        }
+            else
+                BitmapFactory.decodeResource(App.instance.resources, R.drawable.noob_noob)
+         }
+
+
 
 }
