@@ -85,10 +85,7 @@ class HeroDetailsActivity : FragmentActivity() {
             putExtra(Intent.EXTRA_TEXT, getString(R.string.my_hero) + ": "+ vm.heroUiModel.name)
             putExtra(Intent.EXTRA_STREAM, uri)
 
-            // TODO
-            // To Gmail/Whatsapp shares picture and text well, maybe need to add subject/title to email;
-            // Not working properly for for Facebook and Instagram, shares only picture due to Facebook restriction
-            // available only through facebook sdk
+            // Facebook and Instagram do not receive text due to their restrictions, feature available only through facebook sdk TODO
             setDataAndType(uri, "image/*" + "text/*")
             flags = FLAG_GRANT_READ_URI_PERMISSION
         }

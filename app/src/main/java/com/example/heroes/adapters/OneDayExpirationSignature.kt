@@ -5,6 +5,8 @@ import java.nio.ByteBuffer
 import java.security.MessageDigest
 import java.util.*
 
+//https://bumptech.github.io/glide/doc/caching.html
+//https://tech.fleka.me/how-to-have-an-expired-cache-for-glide-image-library-e69d9b54ef40
 class OneDayExpirationSignature(private var currentVersion: Int) : Key {
 
     companion object {
