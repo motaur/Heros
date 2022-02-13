@@ -12,7 +12,7 @@ git clone git@github.com:motaur/heroes.git
 
 ## Configuration
 1. Get your api key from https://superheroapi.com
-2. Create `apikey.properties` in the root of the project file with the following info:
+2. Create file `apikey.properties` in the root of the project with the following info:
 ```gradle
 HEROES_API_KEY="..."
 ```
