@@ -22,9 +22,10 @@ HEROES_API_KEY="..."
 Use the Android Studio *Build Variants* button to choose between **debug** and **mock** flavors combined with debug and release build types
 
 ## Architecture
-The App uses MVVM Design Pattern.
-![Alt text](arch.png?raw=true "Architecture")
+The App uses MVVM Design Pattern and Dependency Injection. <br />
 
-+ <strong>ViewModels</strong> are responsible for UI logic; <br />
-+ <strong>Services</strong> are responsible for business logic such as models mapping, data validations etc.<br />
-+ <strong>Repositories</strong> are abstractions for data sources, such as API, Database and so on.<br />
+![Alt text](arch.png?raw=true "Architecture") <br />
+
++ <strong>ViewModels</strong> are responsible for UI logic. <br />
++ <strong>Services</strong> Are represent doman layer, they are responsible for business logic such as models mapping, data validations etc.<br />
++ <strong>Repositories</strong> Aer data sources, such as API, Database and so on.<br />
