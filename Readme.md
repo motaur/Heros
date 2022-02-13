@@ -23,4 +23,8 @@ Use the Android Studio *Build Variants* button to choose between **debug** and *
 
 ## Architecture
 The App uses MVVM Design Pattern.
-![alt text](https://github.com/motaur/Heroes/blob/master/arch.png?raw=true)
+![Alt text](arch.png?raw=true "Architecture")
+
++ <strong>ViewModels</strong> are responsible for UI logic; <br />
++ <strong>Services</strong> are responsible for business logic such as models mapping, data validations etc.<br />
++ <strong>Repositories</strong> are abstractions for data sources, such as API, Database and so on.<br />
