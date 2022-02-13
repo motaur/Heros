@@ -20,3 +20,7 @@ HEROES_API_KEY="..."
 
 ## Build variants
 Use the Android Studio *Build Variants* button to choose between **debug** and **mock** flavors combined with debug and release build types
+
+## Architecture
+The App uses MVVM Design Pattern.
+![alt text](https://github.com/motaur/Heroes/blob/master/arch.png?raw=true)
