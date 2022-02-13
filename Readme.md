@@ -28,4 +28,4 @@ The App uses MVVM Design Pattern and Dependency Injection. <br />
 
 + <strong>ViewModels</strong> are responsible for UI logic. <br />
 + <strong>Services</strong> Are represent doman layer, they are responsible for business logic such as models mapping, data validations etc.<br />
-+ <strong>Repositories</strong> Aer data sources, such as API, Database and so on.<br />
++ <strong>Repositories</strong> Are data sources, such as API, Database and so on.<br />
