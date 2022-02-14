@@ -26,7 +26,7 @@ class AppearanceFragment(private val appearance: Appearance) : Fragment() {
     private fun initAppearance(){
         binding.gender.text = appearance.gender
         try {
-            binding.weight.text = appearance.weight[0]
+            binding.weight.text = appearance.weight[1]
         }
         catch (e: IndexOutOfBoundsException){
             binding.weight.text = "-"
